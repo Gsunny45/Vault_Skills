@@ -16,7 +16,7 @@ tags:
 
 # Dataview
 
-> Plugin by blacksmithgu — turns your Obsidian vault into a queryable database. Write queries against your notes' frontmatter, inline fields, tags, and file metadata using a SQL-like language or raw JavaScript.
+> Plugin by blacksmithgu — turns your Obsidian vault into a queryable database. Write queries against your notes' frontmatter, inline fields, tags, and file metadata using a SQL-like language or raw JavaScript. **v0.5.70** · 806 commits · MIT license.
 
 ## What It Does
 
@@ -32,7 +32,7 @@ Two syntax modes:
 - **DQL** (Dataview Query Language) — SQL-like, no JavaScript required
 - **DataviewJS** — full JavaScript with `dv.*` API, for complex logic and custom rendering
 
-Dataview is **read-only** — it never modifies your notes. Results re-render on every file change.
+**Security note:** DQL queries are sandboxed and **read-only** — they cannot modify your notes. DataviewJS runs with full plugin-level access and **can** modify, delete, or create files and make network calls. Only enable DataviewJS if you trust the queries you run. Results re-render on every file change.
 
 ## When To Use It
 
@@ -101,6 +101,13 @@ Priority:: High
 ```
 Reference as `Status`, `Due`, `Priority` in queries — behaves identically to frontmatter.
 
+**Hidden inline fields** wrap the key in parentheses to suppress display while keeping it queryable:
+```
+(priority:: high)
+(draft:: true)
+```
+These won't show in Reading view but are fully indexable by Dataview queries.
+
 ## Example Queries
 
 ### Plugin dashboard (TABLE)
@@ -166,14 +173,13 @@ dv.table(
 ## Gotchas & Known Issues
 
 - **Frontmatter must be valid YAML** — a bare colon or bad indentation breaks the entire note's metadata. Use the Linter plugin to auto-fix.
-- **Queries are read-only** — Dataview never writes to notes. For editable task views, use the Tasks plugin; Dataview handles reporting.
+- **DQL is read-only; DataviewJS is NOT** — DQL queries are sandboxed and safe. DataviewJS has full plugin-level access — it can read, write, and delete files. Only copy-paste DataviewJS from sources you trust.
 - **DataviewJS can be slow on large vaults** — JS queries run on every refresh. Use `LIMIT` and scope `FROM` to a specific folder wherever possible.
 - **Inline fields require "Enable Inline Queries" to be on** — `key:: value` syntax won't index otherwise.
-- **`FROM ""` queries the entire vault** — can lag significantly on 500+ note vaults. Always scope with a folder path when possible.
 - **Date comparisons need `date()` wrapper** — `WHERE due <= "2026-05-01"` fails silently. Use `WHERE due <= date("2026-05-01")` or `date(today)`.
 - **Tags in FROM must include `#`** — `FROM "Projects"` is a folder path; `FROM #projects` is a tag.
 - **Results don't persist** — Dataview only renders when the note is open. There's no cached output to read externally.
-- **Plugin is in maintenance mode** — blacksmithgu has stepped back. Bug fixes are slow; the community fork **Dataview Fixes** (installable via BRAT) patches many known issues.
+- **Slow bug fixes** — blacksmithgu has stepped back from active development; occasional releases still happen (v0.5.70, Apr 2025). 630+ open issues. The community fork **Dataview Fixes** (installable via BRAT) patches many known issues but isn't an official replacement.
 
 ## Works Well With
 

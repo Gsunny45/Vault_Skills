@@ -120,10 +120,15 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 - To switch: close Obsidian, open another vault — scripts work automatically
 
 ## Current Session Goal
-⬜ IN PROGRESS — Obsidian Git full plugin note (10.7k ⭐)
-- Most starred Obsidian plugin — auto git backup & sync
-- Stub exists, needs full enhancement with GitHub-audited features
-- Enhancement queue suggests: Obsidian Git → Dataview → Templater → Tasks → Excalidraw → Smart Connections → new plugin evals
+✅ COMPLETED — Obsidian Git full plugin note (10.7k ⭐)
+- Checked GitHub FIRST — found critical missing gotchas
+- Added version info (v2.38.2, 964 commits, 145 releases)
+- Added editor gutter signs, commit variants, Open on GitHub commands
+- **Added critical gotcha: mobile is NOT recommended** — isomorphic-git is "very unstable" per maintainer
+- Added real-world usage example (this vault's git init → push workflow)
+- Added commit nuance (Commit vs Commit all changes distinction)
+- Expanded Works Well With and Related Skills
+- Next queue: Dataview (8.9k ⭐)
 ```
 
 ---
@@ -158,8 +163,8 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 
 | Priority | Session Goal |
 |---|---|
-| **1** | Obsidian Git — full plugin note (10.7k ⭐) ← NEXT |
-| 2 | Dataview — full plugin note (8.9k ⭐, 4M+ downloads) |
+| **1** | ✅ Obsidian Git — full plugin note (ENHANCED, GitHub-audited) |
+| **2** | Dataview — full plugin note (8.9k ⭐, 4M+ downloads) ← NEXT |
 | 3 | Templater — full plugin note (4.9k ⭐, 2M+ downloads) |
 | 4 | Tasks — full plugin note (3.7k ⭐) |
 | 5 | Excalidraw — full plugin note (6.8k ⭐, #1 most downloaded) |

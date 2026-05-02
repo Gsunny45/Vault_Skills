@@ -1,0 +1,17 @@
+# Obsidian
+.obsidian/
+.obsidian.vimrc
+.trash/
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Node / dev
+node_modules/
+dist/
+*.js.map
+
+# Windows reserved names (can appear as empty files)
+nul

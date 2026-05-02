@@ -1,0 +1,164 @@
+/* ─── Dashboard View CSS Snippet ───────────────────────────────────────────
+ * Apply to any dashboard note by adding `cssclass: dashboard-view` in frontmatter.
+ * Enable in Settings → Appearance → CSS Snippets.
+ *
+ * Designed to work with any theme — uses CSS variables (var(--background-*), etc.)
+ * so it adapts to light/dark mode and theme colors automatically.
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Card containers (callouts, blockquotes) ─── */
+.dashboard-view .callout {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-view .callout .callout-title {
+  font-weight: 600;
+}
+
+.dashboard-view blockquote {
+  border-radius: 6px;
+  padding: 8px 16px;
+  background: var(--background-primary-alt);
+}
+
+/* ─── Dataview tables ─── */
+.dashboard-view .dataview.table-view-table {
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.dashboard-view .dataview.table-view-table thead th {
+  background: var(--background-secondary);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-bottom: 2px solid var(--background-modifier-border);
+  white-space: nowrap;
+}
+
+.dashboard-view .dataview.table-view-table tbody tr {
+  transition: background 0.1s ease;
+}
+
+.dashboard-view .dataview.table-view-table tbody tr:hover {
+  background: var(--background-primary-alt);
+}
+
+.dashboard-view .dataview.table-view-table tbody td {
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* ─── Alternate row colors for readability ─── */
+.dashboard-view .dataview.table-view-table tbody tr:nth-child(even) {
+  background: var(--background-primary);
+}
+
+.dashboard-view .dataview.table-view-table tbody tr:nth-child(odd) {
+  background: var(--background-secondary);
+}
+
+/* ─── Task lists in Dataview ─── */
+.dashboard-view .dataview.task-list-item {
+  padding: 3px 0;
+}
+
+.dashboard-view .dataview.task-list-item .task-list-item-checkbox {
+  margin-right: 8px;
+}
+
+/* ─── Quick stats badges (used with DataviewJS) ─── */
+.dashboard-view .badge {
+  display: inline-block;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin: 2px 3px;
+  white-space: nowrap;
+}
+
+/* ─── Inline dataview values ─── */
+.dashboard-view .dataview.inline-field {
+  font-size: 0.9em;
+}
+
+.dashboard-view .dataview.inline-field-key {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ─── Horizontal rules as section dividers ─── */
+.dashboard-view hr {
+  margin: 24px 0;
+  border-color: var(--background-modifier-border);
+}
+
+/* ─── Section headings ─── */
+.dashboard-view h1 {
+  border-bottom: 2px solid var(--interactive-accent);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.dashboard-view h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: var(--text-normal);
+}
+
+.dashboard-view h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+/* ─── Link grid (for navigation sections) ─── */
+.dashboard-view .link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.dashboard-view .link-grid a {
+  display: block;
+  padding: 8px 12px;
+  background: var(--background-secondary);
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.15s;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.dashboard-view .link-grid a:hover {
+  background: var(--background-secondary-alt);
+  border-color: var(--interactive-accent);
+}
+
+/* ─── Compact layout for dense dashboards ─── */
+.dashboard-view .compact p {
+  margin-block: 4px;
+}
+
+.dashboard-view .compact ul {
+  margin-block: 4px;
+}
+
+/* ─── Responsive tweaks for narrow panes ─── */
+@media screen and (max-width: 600px) {
+  .dashboard-view .link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-view .dataview.table-view-table {
+    font-size: 0.8em;
+  }
+
+  .dashboard-view .dataview.table-view-table thead th,
+  .dashboard-view .dataview.table-view-table tbody td {
+    padding: 3px 6px;
+  }
+}

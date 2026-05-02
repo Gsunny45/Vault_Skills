@@ -12,15 +12,15 @@ tags:
 | Skill | Category | Difficulty | Status |
 |---|---|---|---|
 | [[Dashboards]] | UI & Navigation | Intermediate | ✅ Active |
-| [[Vault Architecture]] | Structure | Beginner | Documenting |
+| [[Vault Architecture]] | Structure | Beginner | ✅ Active |
 | [[AI Workflows in Obsidian]] | AI | Intermediate | Documenting |
-| [[Linking & Backlinks Strategy]] | PKM | Beginner | Documenting |
+| [[Linking & Backlinks Strategy]] | PKM | Beginner | ✅ Active |
 | [[Dataview Dashboard Patterns]] | Data | Advanced | Documenting |
 | [[Kanban Workflows]] | Project Mgmt | Beginner | ✅ Active |
 | [[Canvas Visual Mapping]] | Visual & Diagrams | Intermediate | ✅ Active |
 | [[REST API Automation]] | Integration | Advanced | ✅ Active |
 | [[Beta Testing Workflow]] | AI | Intermediate | ✅ Active |
-| [[Template Systems]] | Automation | Intermediate | Documenting |
+| [[Template Systems]] | Automation | Intermediate | ✅ Active |
 
 ## Difficulty Key
 - **Beginner** — core Obsidian only or simple plugin use

@@ -120,25 +120,64 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 - To switch: close Obsidian, open another vault — scripts work automatically
 
 ## Current Session Goal
-✅ COMPLETED — Dataview plugin note (8.9k ⭐, GitHub-audited)
-- **Fixed critical inaccuracy**: note claimed "Dataview is read-only" — actually only DQL is sandboxed; DataviewJS has full file access
-- Added version info (v0.5.70, 806 commits, MIT)
-- Added hidden inline field syntax `(key:: value)`
-- Added security gotcha distinguishing DQL vs DataviewJS
-- Refined "maintenance mode" statement to reflect occasional releases (v0.5.70, Apr 2025)
-- Fixed duplicate `FROM ""` gotcha
-- Next queue: Templater (4.9k ⭐)
+⬜ **ACTIVE — Build Fat_Lady_Sings vault (test bootstrap from skill notes)**
+
+Test whether Vault_Skills' skill notes can bootstrap a real vault from scratch.
+New vault at `C:\Users\MarsBase\Music\Fat_Lady_Sings` — music playlist manager.
+
+⚠️ Build this vault. Use the skill notes as primary reference during each layer.
+
+### Layered Build Plan
+
+| Layer | Task | Skill Reference | Status |
+|-------|------|----------------|--------|
+| **1** | Create folder structure | [[Vault Architecture]] | ⬜ |
+| **2** | Create song/album/playlist templates | [[Template Systems]] | ⬜ |
+| **3** | Install & configure plugins (Dataview, Templater, QuickAdd, Homepage, Kanban) | [[Template Systems]] | ⬜ |
+| **4** | Seed data — 3 albums, 10+ songs, 3 playlists | [[Linking & Backlinks Strategy]] | ⬜ |
+| **5** | Build Dashboard.md with Dataview queries | [[Dashboards]] | ⬜ |
+| **6** | Create Kanban playlist curation board | [[Kanban Workflows]] | ⬜ |
+| **7** | Set homepage, test all links and queries | — | ⬜ |
+
+Design blueprint: `04 - Vault Designs/Fat_Lady_Sings.md` — use this as the specification.
 ```
 
 ---
 
-## Checklist — Before Starting a New Session
+## Fat_Lady_Sings Build — Key Specs
 
-- [ ] Update "Current Session Goal" above before pasting
-- [ ] Note which plugin or skill you're documenting
-- [ ] Check `_Plugin Index.md` — add the plugin there first if not listed
-- [ ] **Check GitHub repo README** for features not mentioned in the plugin's Obsidian page
-- [ ] After session: update plugin status in `_Plugin Index.md` from `Documenting` → `Active`
+- **Name**: `Fat_Lady_Sings`
+- **Location**: `C:\Users\MarsBase\Music\Fat_Lady_Sings`
+- **Purpose**: Music playlist manager — catalog songs, albums, artists, curate playlists
+- **Test**: Verify that Vault_Skills skill notes are sufficient to bootstrap a real vault
+
+### Folder Structure
+```
+Fat_Lady_Sings/
+├── 00 - Inbox/
+├── Songs/
+├── Albums/
+├── Artists/
+├── Genres/
+├── Playlists/
+├── Templates/
+├── Dashboard/
+└── Kanban/
+```
+
+### Required Plugins
+Dataview, Templater, QuickAdd, Homepage, Kanban
+
+### Frontmatter Schemas (from Vault Architecture skill)
+**Song**: `type: song, title, artist: [[Link]], album: [[Link]], genre: [], mood, bpm, year, rating, duration`
+**Album**: `type: album, title, artist: [[Link]], year, genre: [], rating`
+**Playlist**: `type: playlist, title, mood, genre: [], created, songs: []`
+
+### Seed Data
+- Album: "Kind of Blue" — Miles Davis (jazz, 1959)
+- Album: "Dummy" — Portishead (trip-hop, 1994)
+- Album: "Random Access Memories" — Daft Punk (electronic/funk, 2013)
+- Playlists: "Late Night Jazz", "Morning Run", "Rainy Day"
 
 ---
 
@@ -149,12 +188,12 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 |---|---|---|
 | Folder structure | ✅ Complete | 2026-04-29 |
 | Plugin Index | ✅ Updated (42 plugins, 14 added from research) | 2026-04-29 |
-| Skill Index | ✅ Updated (9 skills, Dashboards written) | 2026-05-02 |
+| Skill Index | ✅ Updated (12 skills, 3 newly written) | 2026-05-02 |
 | Templates | ✅ Complete | 2026-04-29 |
 | Reference notes | ✅ Complete | 2026-04-29 |
 | Plugin notes written | 10 of 42 | 2026-05-02 (REST API ✅, Advanced Canvas ✅, Local GPT ✅, Kanban ✅, Day Planner ✅, Homepage ✅, ChatGPT MD ✅, Gemini Scribe ✅, PDF++ ✅, BRAT ✅) |
-| Skill notes written | 5 of 9 | 2026-05-02 (REST API Automation ✅, Canvas Visual Mapping ✅, Kanban Workflows ✅, Beta Testing Workflow ✅, Dashboards ✅) |
-| Vault Designs | 0 | 2026-04-29 |
+| Skill notes written | 8 of 9 | 2026-05-02 (REST API Automation ✅, Canvas Visual Mapping ✅, Kanban Workflows ✅, Beta Testing Workflow ✅, Dashboards ✅, Vault Architecture ✅, Template Systems ✅, Linking & Backlinks Strategy ✅) |
+| Vault Designs | 1 of 10 | 2026-05-02 (Fat_Lady_Sings blueprint ✅) |
 
 ---
 
@@ -162,9 +201,8 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 
 | Priority | Session Goal |
 |---|---|
-| **1** | ✅ Obsidian Git — full plugin note (ENHANCED, GitHub-audited) |
-| **2** | ✅ Dataview — full plugin note (ENHANCED, GitHub-audited) |
-| **3** | Templater — full plugin note (4.9k ⭐, 2M+ downloads) ← NEXT |
+| **★** | Fat_Lady_Sings vault build — test bootstrap from skill notes ← **ACTIVE** |
+| 3 | Templater — full plugin note (4.9k ⭐, 2M+ downloads) |
 | 4 | Tasks — full plugin note (3.7k ⭐) |
 | 5 | Excalidraw — full plugin note (6.8k ⭐, #1 most downloaded) |
 | 6 | Smart Connections — v4 rewrite update |

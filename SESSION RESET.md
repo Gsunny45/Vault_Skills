@@ -120,27 +120,32 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 - To switch: close Obsidian, open another vault — scripts work automatically
 
 ## Current Session Goal
-⬜ **ACTIVE — Build Fat_Lady_Sings vault (test bootstrap from skill notes)**
+✅ **COMPLETED — Build Fat_Lady_Sings vault (test bootstrap from skill notes)**
 
-Test whether Vault_Skills' skill notes can bootstrap a real vault from scratch.
-New vault at `C:\Users\MarsBase\Music\Fat_Lady_Sings` — music playlist manager.
+Test outcome: Skill notes were sufficient to bootstrap all vault content. Plugin binaries downloaded from GitHub releases. `data.json` configs require ALL interface fields — partial configs crash with `Cannot read properties of undefined`. Homepage subfolder paths fail to resolve; `Home.md` at root level works.
 
-⚠️ Build this vault. Use the skill notes as primary reference during each layer.
+**Key lessons:**
+- Plugin `data.json` must include EVERY field from the plugin's settings interface — omitting fields causes `Cannot read properties of undefined` crashes on load
+- Homepage plugin at root (e.g., `Home.md`) resolves reliably; subfolder paths (`Dashboard/Music Dashboard`) fail silently
+- Templater needs all 17 settings fields including `folder_templates`, `startup_templates`, `template_hotkeys`, `trigger_on_file_creation_ignore_folders`
+- Community plugin `active-deadline-mode` is not a real plugin ID — caused core-plugins.json corruption
 
-### Layered Build Plan
+### Layered Build Results
 
-| Layer | Task | Skill Reference | Status |
-|-------|------|----------------|--------|
-| **1** | Create folder structure | [[Vault Architecture]] | ⬜ |
-| **2** | Create song/album/playlist templates | [[Template Systems]] | ⬜ |
-| **3** | Install & configure plugins (Dataview, Templater, QuickAdd, Homepage, Kanban) | [[Template Systems]] | ⬜ |
-| **4** | Seed data — 3 albums, 10+ songs, 3 playlists | [[Linking & Backlinks Strategy]] | ⬜ |
-| **5** | Build Dashboard.md with Dataview queries | [[Dashboards]] | ⬜ |
-| **6** | Create Kanban playlist curation board | [[Kanban Workflows]] | ⬜ |
-| **7** | Set homepage, test all links and queries | — | ⬜ |
+| Layer | Task | Skill Reference | Status | Notes |
+|-------|------|----------------|--------|-------|
+| **1** | Create folder structure | [[Vault Architecture]] | ✅ | 10 folders created |
+| **2** | Create song/album/playlist templates | [[Template Systems]] | ✅ | 4 templates with Templater prompts |
+| **3** | Install & configure plugins (Dataview, Templater, QuickAdd, Homepage, Kanban) | [[Template Systems]] | ✅ | All 5 installed and configured via data.json |
+| **4** | Seed data — 3 albums, 10+ songs, 3 playlists | [[Linking & Backlinks Strategy]] | ✅ | 22 songs, 3 albums, 3 artists, 3 genres, 3 playlists |
+| **5** | Build Dashboard.md with Dataview queries | [[Dashboards]] | ✅ | Music Dashboard with 8 query sections |
+| **6** | Create Kanban playlist curation board | [[Kanban Workflows]] | ✅ | Discover→Try→In Rotation→Retired lanes |
+| **7** | Set homepage via Home.md, test all links | — | ✅ | `Home.md` at root. Links to full dashboard |
 
 Design blueprint: `04 - Vault Designs/Fat_Lady_Sings.md` — use this as the specification.
-```
+
+### Current Vault State
+Templater, Dataview, Kanban, QuickAdd fully pre-configured. Homepage set to root `Home.md`. Open vault → Trust plugins → all working immediately.
 
 ---
 
@@ -194,6 +199,7 @@ Dataview, Templater, QuickAdd, Homepage, Kanban
 | Plugin notes written | 10 of 42 | 2026-05-02 (REST API ✅, Advanced Canvas ✅, Local GPT ✅, Kanban ✅, Day Planner ✅, Homepage ✅, ChatGPT MD ✅, Gemini Scribe ✅, PDF++ ✅, BRAT ✅) |
 | Skill notes written | 8 of 9 | 2026-05-02 (REST API Automation ✅, Canvas Visual Mapping ✅, Kanban Workflows ✅, Beta Testing Workflow ✅, Dashboards ✅, Vault Architecture ✅, Template Systems ✅, Linking & Backlinks Strategy ✅) |
 | Vault Designs | 1 of 10 | 2026-05-02 (Fat_Lady_Sings blueprint ✅) |
+| Fat_Lady_Sings vault build | ✅ Complete (test bootstrap from skill notes) | 2026-05-02 (see build results above) |
 
 ---
 
@@ -201,12 +207,11 @@ Dataview, Templater, QuickAdd, Homepage, Kanban
 
 | Priority | Session Goal |
 |---|---|
-| **★** | Fat_Lady_Sings vault build — test bootstrap from skill notes ← **ACTIVE** |
-| 3 | Templater — full plugin note (4.9k ⭐, 2M+ downloads) |
-| 4 | Tasks — full plugin note (3.7k ⭐) |
-| 5 | Excalidraw — full plugin note (6.8k ⭐, #1 most downloaded) |
-| 6 | Smart Connections — v4 rewrite update |
-| 7 | Skill: AI Workflows in Obsidian — multi-AI patterns |
-| 8 | Skill: Vault Search Strategy — Omnisearch + Dataview + Copilot |
-| 9 | Skill: Backup & Sync Strategy — Obsidian Git + Remotely Save |
-| 10 | P3: New plugin evals (claude-code, Breadcrumbs, MCP, etc.) |
+| 1 | Templater — full plugin note (4.9k ⭐, 2M+ downloads) |
+| 2 | Tasks — full plugin note (3.7k ⭐) |
+| 3 | Excalidraw — full plugin note (6.8k ⭐, #1 most downloaded) |
+| 4 | Smart Connections — v4 rewrite update |
+| 5 | Skill: AI Workflows in Obsidian — multi-AI patterns |
+| 6 | Skill: Vault Search Strategy — Omnisearch + Dataview + Copilot |
+| 7 | Skill: Backup & Sync Strategy — Obsidian Git + Remotely Save |
+| 8 | P3: New plugin evals (claude-code, Breadcrumbs, MCP, etc.) |

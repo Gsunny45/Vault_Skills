@@ -106,6 +106,8 @@ REST API (400k+)
 - OS: Windows 11 64-bit, touchscreen
 
 ## Rules for This Vault
+- **CLAUDE.md at vault root — auto-loads every session. The enforcement layer.**
+- **[[02 - Skills/_Vault Build Protocol]] — read before ANY vault build. No exceptions.**
 - Every new plugin gets added to _Plugin Index.md FIRST before a full note is written
 - Plugin notes use the Plugin Note template from 03 - Templates/
 - Skill notes use the Skill Note template from 03 - Templates/
@@ -200,7 +202,8 @@ Dataview, Templater, QuickAdd, Homepage, Kanban
 | Reference notes | ✅ Complete | 2026-04-29 |
 | Plugin notes written | 10 of 42 | 2026-05-02 (REST API ✅, Advanced Canvas ✅, Local GPT ✅, Kanban ✅, Day Planner ✅, Homepage ✅, ChatGPT MD ✅, Gemini Scribe ✅, PDF++ ✅, BRAT ✅) |
 | Skill notes written | 8 of 9 | 2026-05-02 (REST API Automation ✅, Canvas Visual Mapping ✅, Kanban Workflows ✅, Beta Testing Workflow ✅, Dashboards ✅, Vault Architecture ✅, Template Systems ✅, Linking & Backlinks Strategy ✅) |
-| Vault Designs | 1 of 10 | 2026-05-02 (Fat_Lady_Sings blueprint ✅) |
+| CLAUDE.md | ✅ Created | 2026-05-04 (agent guardrails, tier system, read-before-build enforcement) |
+| Vault Designs | 2 of 10 | 2026-05-02 (Fat_Lady_Sings ✅, Prompt & Context Engineering Rebuild ✅) |
 | Fat_Lady_Sings vault build | ✅ Complete (test bootstrap from skill notes) | 2026-05-02 (see build results above) |
 | **Templater/Dataview/QuickAdd notes** | **✅ Fixed** — added complete data.json schemas + bootstrap guides | 2026-05-02 |
 

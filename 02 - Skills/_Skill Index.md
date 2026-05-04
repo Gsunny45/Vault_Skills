@@ -7,10 +7,13 @@ tags:
 
 # Skill Index
 
+> ⚠️ **START HERE:** [[_Vault Build Protocol]] — mandatory read before any vault build.
+>
 > Skills are techniques and patterns — not plugin docs. A skill may use multiple plugins.
 
 | Skill | Category | Difficulty | Status |
 |---|---|---|---|
+| **[[_Vault Build Protocol]]** | **Structure** | **Beginner** | **✅ Active** |
 | [[Dashboards]] | UI & Navigation | Intermediate | ✅ Active |
 | [[Vault Architecture]] | Structure | Beginner | ✅ Active |
 | [[AI Workflows in Obsidian]] | AI | Intermediate | Documenting |

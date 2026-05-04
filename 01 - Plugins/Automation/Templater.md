@@ -58,6 +58,50 @@ day: <% tp.date.now("dddd") %>
 
 5. **Insert a template**: Command Palette → `Templater: Open Insert Template Modal` → pick your template
 
+## Vault Bootstrap Guide (Build From Scratch)
+
+Use these steps when you're building a vault programmatically (e.g., from an AI agent
+or script) and need Templater configured WITHOUT opening the Obsidian UI.
+
+### Phase 1 — Download & Install
+
+```bash
+VAULT="path/to/your/vault"
+TAG=$(curl -s https://api.github.com/repos/SilentVoid13/Templater/releases/latest | grep '"tag_name"' | head -1 | sed 's/.*"tag_name": "\(.*\)".*/\1/')
+BASE="https://github.com/SilentVoid13/Templater/releases/download/$TAG"
+
+mkdir -p "$VAULT/.obsidian/plugins/templater-obsidian"
+for f in main.js manifest.json styles.css; do
+  curl -sL "$BASE/$f" -o "$VAULT/.obsidian/plugins/templater-obsidian/$f"
+done
+```
+
+### Phase 2 — Register in community-plugins.json
+
+```bash
+# If file doesn't exist yet, create with all plugins:
+echo '["templater-obsidian"]' > "$VAULT/.obsidian/community-plugins.json"
+
+# If file exists, add "templater-obsidian" to the array (preserve existing entries)
+```
+
+### Phase 3 — Write data.json
+
+Copy the **complete** data.json from the Programmatic Configuration section above.
+**Every one of the 17 fields is required** — omitting any causes a crash.
+
+### Phase 4 — Create your templates folder and template files
+
+```bash
+mkdir -p "$VAULT/03 - Templates"
+# Then create your .md template files inside
+```
+
+### Phase 5 — Verify
+
+Open the vault in Obsidian. Check: Settings → Community Plugins → Templater should show as enabled.
+Open command palette and type "Templater" — the insert template modal should appear.
+
 ## Template Functions Reference
 
 ### Dates (`tp.date`)
@@ -154,8 +198,58 @@ created: <% tp.date.now("YYYY-MM-DD") %>
 | Enable Script Files | On (if using scripts) | Allows `tp.user.*` custom scripts from a scripts folder |
 | Script files folder location | `05 - Snippets/Scripts` | Where Templater looks for `.js` user scripts |
 
+## Programmatic Configuration (data.json)
+
+To pre-configure Templater without manual UI setup, place this `data.json` in
+`.obsidian/plugins/templater-obsidian/data.json`. **CRITICAL: Every field below MUST
+be present.** Omitting any field causes `Cannot read properties of undefined`
+crashes when Templater loads. All 17 fields are required.
+
+```json
+{
+  "template_folder": "03 - Templates",
+  "folder_templates": {},
+  "startup_templates": [],
+  "trigger_on_file_creation": true,
+  "trigger_on_file_creation_ignore_folders": [],
+  "auto_jump_to_cursor": true,
+  "enable_system_commands": true,
+  "shell_path": "",
+  "user_scripts_folder": "05 - Snippets/Scripts",
+  "enable_folder_templates": true,
+  "enable_startup_templates": false,
+  "template_hotkeys": {},
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [],
+  "invalid_characters_replacement_mode": "replace",
+  "overwrite_mode": false
+}
+```
+
+| Field | Type | Purpose |
+|---|---|---|
+| `template_folder` | string | Path to templates folder (e.g., `"03 - Templates"`) |
+| `folder_templates` | object | Map folder paths to template files for auto-trigger: `{"Songs/": "03 - Templates/Song Note.md"}` |
+| `startup_templates` | array | Templates that run on every Obsidian launch (usually empty) |
+| `trigger_on_file_creation` | bool | Auto-apply template when creating new note in a mapped folder |
+| `trigger_on_file_creation_ignore_folders` | array | Folders to exclude from auto-trigger |
+| `auto_jump_to_cursor` | bool | Jump cursor to `<% tp.file.cursor(0) %>` marker |
+| `enable_system_commands` | bool | Allow `tp.system.prompt()` and `tp.system.suggester()` |
+| `shell_path` | string | Custom shell for `tp.user` scripts (blank = OS default) |
+| `user_scripts_folder` | string | Path to folder with `.js` scripts for `tp.user.*` |
+| `enable_folder_templates` | bool | Master switch for per-folder auto-trigger |
+| `enable_startup_templates` | bool | Master switch for startup templates |
+| `template_hotkeys` | object | Map template paths to hotkey strings |
+| `syntax_highlighting` | bool | Highlight `<% %>` tags in editor |
+| `syntax_highlighting_mobile` | bool | Same, on mobile (usually off for performance) |
+| `enabled_templates_hotkeys` | array | Which template hotkeys are active |
+| `invalid_characters_replacement_mode` | string | How to handle invalid filename chars: `"replace"` or `"remove"` |
+| `overwrite_mode` | bool | Overwrite existing files with same name (dangerous) |
+
 ## Gotchas & Known Issues
 
+- **data.json MUST include every field** — omitting any field causes `Cannot read properties of undefined` crashes. See Programmatic Configuration above for the full 17-field schema.
 - **`await` is required for prompts** — `tp.system.prompt()` and `tp.system.suggester()` return Promises. Always use `await`, wrapped in `<%* ... %>` execution tags, not interpolation tags.
 - **Execution tags don't output anything** — `<%* someCode %>` runs code silently. Use `<% expression %>` to output values.
 - **Template folder notes aren't indexed normally** — if your templates folder is inside your vault, Dataview will try to query template files. Use `FROM` scoping or exclude the templates folder.

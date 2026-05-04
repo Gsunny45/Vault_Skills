@@ -122,13 +122,14 @@ The REST API plugin is installed and HTTP-enabled (port 27123) on these vaults:
 ## Current Session Goal
 ✅ **COMPLETED — Build Fat_Lady_Sings vault (test bootstrap from skill notes)**
 
-Test outcome: Skill notes were sufficient to bootstrap all vault content. Plugin binaries downloaded from GitHub releases. `data.json` configs require ALL interface fields — partial configs crash with `Cannot read properties of undefined`. Homepage subfolder paths fail to resolve; `Home.md` at root level works.
+Test outcome: Skill notes were sufficient to bootstrap all vault content. Plugin binaries downloaded from GitHub releases. Templater, Dataview, Kanban, QuickAdd `data.json` configs work with complete field sets. Homepage `data.json` CANNOT be pre-written — every attempt causes `Cannot read properties of undefined` crash regardless of path format or field set. Homepage must be configured via Obsidian UI.
 
 **Key lessons:**
-- Plugin `data.json` must include EVERY field from the plugin's settings interface — omitting fields causes `Cannot read properties of undefined` crashes on load
-- Homepage plugin at root (e.g., `Home.md`) resolves reliably; subfolder paths (`Dashboard/Music Dashboard`) fail silently
+- Plugin `data.json` must include EVERY field from the plugin's settings interface — omitting fields causes `Cannot read properties of undefined` crashes
+- Homepage plugin's data.json cannot be pre-written — crashes on any config. Must use Obsidian UI.
 - Templater needs all 17 settings fields including `folder_templates`, `startup_templates`, `template_hotkeys`, `trigger_on_file_creation_ignore_folders`
 - Community plugin `active-deadline-mode` is not a real plugin ID — caused core-plugins.json corruption
+- Plugin binaries (main.js + manifest.json + styles.css) download cleanly from GitHub release assets
 
 ### Layered Build Results
 
@@ -136,16 +137,17 @@ Test outcome: Skill notes were sufficient to bootstrap all vault content. Plugin
 |-------|------|----------------|--------|-------|
 | **1** | Create folder structure | [[Vault Architecture]] | ✅ | 10 folders created |
 | **2** | Create song/album/playlist templates | [[Template Systems]] | ✅ | 4 templates with Templater prompts |
-| **3** | Install & configure plugins (Dataview, Templater, QuickAdd, Homepage, Kanban) | [[Template Systems]] | ✅ | All 5 installed and configured via data.json |
+| **3** | Install & configure plugins (Dataview, Templater, QuickAdd, Kanban) | [[Template Systems]] | ✅ | 4 of 5 pre-configured via data.json |
+| **3b** | Install & configure Homepage | [[Template Systems]] | ❌ | data.json crashes plugin on load. Must use Obsidian UI |
 | **4** | Seed data — 3 albums, 10+ songs, 3 playlists | [[Linking & Backlinks Strategy]] | ✅ | 22 songs, 3 albums, 3 artists, 3 genres, 3 playlists |
 | **5** | Build Dashboard.md with Dataview queries | [[Dashboards]] | ✅ | Music Dashboard with 8 query sections |
 | **6** | Create Kanban playlist curation board | [[Kanban Workflows]] | ✅ | Discover→Try→In Rotation→Retired lanes |
-| **7** | Set homepage via Home.md, test all links | — | ✅ | `Home.md` at root. Links to full dashboard |
+| **7** | Set homepage, test all links | — | ❌ | Homepage config fails. Must set via UI: Settings → Homepage → `Dashboard/Music Dashboard` |
 
 Design blueprint: `04 - Vault Designs/Fat_Lady_Sings.md` — use this as the specification.
 
 ### Current Vault State
-Templater, Dataview, Kanban, QuickAdd fully pre-configured. Homepage set to root `Home.md`. Open vault → Trust plugins → all working immediately.
+Templater (17 fields), Dataview (15 fields), Kanban, QuickAdd pre-configured. Homepage binary installed but NOT configured — crashes on any data.json. Set via Obsidian UI on first open.
 
 ---
 
@@ -200,6 +202,7 @@ Dataview, Templater, QuickAdd, Homepage, Kanban
 | Skill notes written | 8 of 9 | 2026-05-02 (REST API Automation ✅, Canvas Visual Mapping ✅, Kanban Workflows ✅, Beta Testing Workflow ✅, Dashboards ✅, Vault Architecture ✅, Template Systems ✅, Linking & Backlinks Strategy ✅) |
 | Vault Designs | 1 of 10 | 2026-05-02 (Fat_Lady_Sings blueprint ✅) |
 | Fat_Lady_Sings vault build | ✅ Complete (test bootstrap from skill notes) | 2026-05-02 (see build results above) |
+| **Templater/Dataview/QuickAdd notes** | **✅ Fixed** — added complete data.json schemas + bootstrap guides | 2026-05-02 |
 
 ---
 

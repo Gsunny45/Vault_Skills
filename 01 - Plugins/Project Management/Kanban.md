@@ -54,9 +54,9 @@ Settings operate at two levels: **Global** (Settings → Kanban, applies to all 
 | Show card count | On | Shows count per lane header |
 | Date format | `YYYY-MM-DD` | Consistent with Obsidian date format |
 | Show relative dates | On | Shows "2 days ago" / "in 3 days" — useful at a glance |
-| Date trigger | `/date` (default) | Type in a card to open the date picker |
+| Date trigger | `@` (default) | Type `@` (or configured trigger) in a card to open the date picker |
 | Link dates to daily notes | Off | On = dates become `[[2026-04-29]]` links |
-| Show checkboxes | On | Renders `- [ ]` as clickable checkboxes in cards |
+| Display card checkbox | On | Renders `- [ ]` as clickable checkboxes; Ctrl+click archives the card |
 | Move tags to footer | Off | Tags inline with body text is more natural |
 | Tag click action | Search board | Keeps search scoped rather than searching entire vault |
 | Max archive size | `-1` (unlimited) | Archive stores completed/stale cards without deleting |
@@ -89,14 +89,13 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] Research authentication options
-- [ ] Draft architecture document
+- [ ] Research authentication options @{2026-05-15} #research
+- [ ] Draft architecture document @{2026-05-20} #planning
 - [ ] Set up CI/CD pipeline
-- [ ] Due: 2026-05-15
 
 ## In Progress
 
-- [ ] Build API endpoint `due: 2026-05-01`
+- [ ] Build API endpoint @{2026-05-01} #dev
 - [ ] Write unit tests #testing
 
 ## Done
@@ -109,7 +108,7 @@ kanban-plugin: board
 - `## H2 headings` → column/lane headers
 - `- ` bullet lists → cards
 - `- [ ]` / `- [x]` → checkable task cards
-- `due:` or `Due:` → date metadata (displayed in card footer)
+- `@{YYYY-MM-DD}` → date metadata (displayed in card footer with relative labels)
 - `#tag` → tag (with custom color if configured)
 - `[[wikilinks]]` → linked notes (shows backlinks in graph view)
 

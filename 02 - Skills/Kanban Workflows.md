@@ -95,7 +95,7 @@ Settings → Kanban — set these once:
 | Date format | `YYYY-MM-DD` | Matches Obsidian daily notes, sorts correctly |
 | Show relative dates | On | "In 3 days" is faster to read than a date |
 | Tag click action | `Search Kanban Board` | Keeps search scoped, not vault-wide |
-| Display card checkbox | On | Visual completeness indicator |
+| Display card checkbox | On | Visual completeness indicator; Ctrl+click archives the card |
 | Link dates to daily notes | Off | Only enable if you use daily notes |
 
 ### Step 4 — Set Up Board-Specific Overrides

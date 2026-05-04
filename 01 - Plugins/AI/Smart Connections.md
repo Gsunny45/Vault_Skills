@@ -5,106 +5,119 @@ category: AI
 status: active
 complexity: medium
 downloads: 1M+
-last-verified: 2026-04-30
+last-verified: 2026-05-04
 tags:
   - plugin
   - ai
   - semantic-search
   - embeddings
   - knowledge-graph
+  - v4
 ---
 
 # Smart Connections
 
-> Plugin by Brian Petro — uses AI embeddings to find semantically related notes in your vault. Shows a persistent panel of notes that are conceptually related to what you're currently reading or writing, even if they share no keywords or links.
+> Plugin by Brian Petro — uses AI embeddings to find semantically related notes in your vault. v4 streamlined the core plugin: install, enable, AI connections just work. Smart Chat spun out into its own plugin. Pro tier adds advanced features.
 
 ## What It Does
 
-Smart Connections builds a local vector embedding index of your vault. When you open any note, the Smart Connections panel shows the most semantically similar notes — related by meaning, not just keywords. You can also chat with your vault using the Smart Chat feature.
+Smart Connections builds a local vector embedding index of your vault. When you open any note, the sidebar panel shows semantically similar notes — related by meaning, not just keywords.
 
-Two main features:
-- **Smart Connections panel** — always-on sidebar showing related notes ranked by similarity score
-- **Smart Chat** — conversational Q&A over your vault using embeddings to retrieve relevant context
+**v4 redesign:** Core plugin refocused on the connections panel. Smart Chat moved to a separate plugin ([[Smart Chat]]). Advanced features moved to **Connections Pro** paid tier.
 
-Supports local embeddings (no API, fully private) and cloud embeddings (OpenAI). Local mode uses a built-in model that runs on CPU.
+### Core (Free) Features — v4
+
+- **Connections sidebar** — always-on panel showing related notes ranked by similarity
+- **Pause Connections** — freeze results so you can browse while keeping connections to a specific note
+- **Pin Connections** — keep certain results always visible per note
+- **Copy Connections as Links** — right-click results → copy all links to clipboard
+- **Smart Context** (briefcase icon) — copy all connection content as AI-ready context bundles. Add/remove items before copying.
+- **Drag-to-link & hover preview** — drag results into notes to create links
+- **Footer connections** — related notes at bottom of notes (mobile-friendly)
+- **Smart Lookup** — question-first semantic search ("search by meaning, not keywords")
+- **Events & Notifications** — notification modal for indexing complete, reimports after model changes, exclusion warnings. Access via Smart Env in status bar.
+- **Local embeddings** — zero-setup, offline-capable, no API key required
+- **Mobile compatible** (iOS/Android)
+
+### Connections Pro (Paid)
+
+- **Inline editor badges** — related blocks surface inside the editor
+- **Footer connections update as you type** — live relevance while writing
+- **Advanced ranking** — configurable scoring/ranking algorithms
+- **Bases integration** — `score_connection`, `list_connections` functions
+- **Duplicate & near-duplicate block detection**
+- **Smart Graph** — landscape/visual view of connections
+- **Performance index** for larger vaults
+
+## Smart Environment
+
+Shared local core powering all Smart Plugins. Handles indexing, embeddings, and cross-plugin configuration. Single settings panel for model providers and embedding models.
 
 ## When To Use It
 
-- Discovering forgotten notes that relate to what you're currently writing
+- Discovering forgotten notes related to current note
 - Finding connections between ideas you didn't explicitly link
-- Researching a topic across your vault without knowing exact keywords
-- "What else do I have about X?" — faster than search for conceptual matches
-- Building a second brain that surfaces related context automatically
-- Chat: "What have I written about productivity?" → synthesized answer from your vault
+- Researching across vault without knowing exact keywords
+- Building second brain that surfaces related context automatically
+- Sending connection bundles to AI chat (Smart Context)
 
-**Difference from Copilot Vault QA**: Smart Connections runs its panel passively as you read; Copilot Vault QA requires you to ask explicit questions. Use both for complementary coverage.
+**vs Copilot Vault QA:** Smart Connections panel runs passively as you read; Copilot needs explicit questions. Complementary.
 
 ## Minimal Setup
 
-### Local (free, offline, recommended for your hardware)
-1. **Install**: Community Plugins → search "Smart Connections" by Brian Petro → Install & Enable
+1. **Install**: Community Plugins → "Smart Connections" by Brian Petro → Install & Enable
 2. **Open the panel**: Ribbon → Smart Connections icon (or Command Palette → "Smart Connections: Open Smart Connections")
-3. **Let it index** — first run builds an embedding index of all your notes. On your i5 with a mid-size vault, expect 1-5 minutes.
-4. Open any note — the panel automatically shows related notes with similarity scores.
+3. **Let it index** — first run builds embedding index. On i5 with mid-size vault, expect 1-5 minutes.
+4. Open any note — panel shows related notes with similarity scores.
 
-**No API key needed for local mode.** Smart Connections ships with a built-in local embedding model.
+**No API key needed.** Built-in local embedding model.
 
-### Cloud (OpenAI, higher quality)
-1. Settings → Smart Connections → Embedding Model → `text-embedding-3-small`
-2. Settings → Smart Connections → API Key → paste your OpenAI key
-3. Click **Re-index vault** after changing models
+### Smart Chat (separate plugin, v4+)
+Smart Chat is no longer bundled. Install [[Smart Chat]] separately if you want conversational Q&A over your vault.
 
 ## Key Settings
 
 | Setting | Recommended Value | Notes |
 |---|---|---|
-| Embedding model | Local (default) | Free, private, runs on CPU. Switch to `text-embedding-3-small` for better quality if you have OpenAI credits. |
-| API Key | (only for cloud models) | Leave blank for local-only mode |
-| Excluded folders | `03 - Templates, 05 - Snippets` | Prevents template/snippet files from polluting results |
-| Maximum related notes | `10` | How many related notes to show in the panel |
-| Minimum similarity score | `0.5` | Filter out weak matches. Lower = more results, more noise. |
-| Show full file path | Off | Cleaner display; turn On if you have many same-named notes |
-| Smart Chat model | `gpt-4o-mini` or local | The LLM used for Smart Chat conversations |
-| Re-index on startup | Off | Only needed if your vault changes heavily between sessions |
+| Embedding model | Local (default) | Free, private, CPU. Switch to cloud models for better quality. |
+| API Key | (leave blank) | Only needed for cloud embedding models |
+| Excluded folders | `03 - Templates, 05 - Snippets` | Prevents template noise in results |
+| Maximum related notes | `10` | Panel result count |
+| Minimum similarity score | `0.5` | Lower = more results, more noise |
+| Show full file path | Off | Cleaner display |
+| Re-index on startup | Off | Only if vault changes heavily between sessions |
 
-## Example Config / Usage
+## v4 New Features Summary
 
-### Smart Connections Panel
-- Open any note → the panel populates automatically
-- Each result shows: note title, similarity score (0-1), a brief excerpt
-- Click any result to open that note
-- Results update in real-time as you type or switch notes
-
-### Smart Chat
-- Ribbon → Smart Chat icon (speech bubble), or Command Palette → "Smart Connections: Open Smart Chat"
-- Ask questions about your vault:
-  - "What are my thoughts on Zettelkasten?"
-  - "Summarize my notes on AI tools"
-  - "What projects am I currently tracking?"
-- Smart Chat retrieves relevant notes via embeddings, then sends them as context to the LLM
-
-### Filtering results
-In the panel, use the filter icon to:
-- Limit results to a specific folder
-- Show only notes with certain tags
-- Adjust minimum similarity threshold on-the-fly
+| Feature | Core/Pro | What It Does |
+| --- | --- | --- |
+| Pause Connections | Core | Freeze panel results while browsing other notes |
+| Pin Connections | Core | Keep specific results always visible |
+| Smart Context | Core | Bundle connections as AI chat context |
+| Copy as Links | Core | Right-click → copy all result links |
+| Events & Notifications | Core | Alerts for indexing, reimports, errors |
+| Inline editor badges | Pro | Related blocks inside the editor |
+| Live footer updates | Pro | Connections update as you type |
+| Advanced ranking | Pro | Custom scoring algorithms |
 
 ## Gotchas & Known Issues
 
-- **First index is slow** — local embedding on CPU takes significant time for large vaults. 100 notes ≈ 30 seconds; 1000 notes ≈ 5-10 minutes on your i5. Run it overnight if needed.
-- **Local model quality is lower than OpenAI** — local embeddings work well for obvious connections but miss subtle conceptual links that `text-embedding-3-small` would catch. Acceptable for personal PKM use.
-- **Index doesn't update automatically on every save** — Smart Connections re-indexes periodically, not on every keystroke. Very recent edits may not appear in results immediately.
-- **Excluded folders matter a lot** — including your templates folder in the index pollutes results with template structure noise. Always exclude `Templates` and `Snippets`.
-- **High RAM usage during indexing** — local embedding can use 2-4GB RAM during the initial index build. Avoid running other memory-heavy tasks simultaneously.
-- **Smart Chat requires an LLM provider** — the panel works offline, but Smart Chat needs either an OpenAI key or a local Ollama model to generate responses.
-- **Similarity scores are relative** — a score of 0.7 doesn't mean "70% related" in an absolute sense. Scores are comparable within one vault but not across vaults.
+- **First index is slow** — local embedding on CPU: 100 notes ≈ 30s, 1000 notes ≈ 5-10 min on i5
+- **Local model quality < OpenAI** — local catches obvious connections, misses subtle ones
+- **Index updates periodically, not on every keystroke** — recent edits may not appear immediately
+- **Exclude Templates & Snippets** — otherwise results fill with structural noise
+- **RAM usage during indexing** — 2-4GB during initial build
+- **v4 change: Smart Chat is now separate** — if you upgrade and lose chat, install the new [[Smart Chat]] plugin
+- **Similarity scores are relative** — comparable within one vault, not across vaults
+- **Pro is paid** — Connections Pro is a subscription tier. Core remains free.
 
 ## Works Well With
 
-- [[Copilot]] — Copilot for explicit Q&A; Smart Connections for passive discovery while you work
-- [[Dataview]] — use Dataview to query vault structure; Smart Connections to find semantic clusters
-- [[Local GPT]] — Local GPT for text actions on current note; Smart Connections for surfacing related vault context
-- [[Linking & Backlinks Strategy]] — Smart Connections helps you discover unlinked notes that should be linked
+- [[Copilot]] — explicit Q&A; Smart Connections for passive discovery
+- [[Dataview]] — query vault structure; Smart Connections for semantic clusters
+- [[Local GPT]] — text actions on current note; Smart Connections for related vault context
+- [[Linking & Backlinks Strategy]] — discover unlinked notes that should be linked
+- [[Smart Chat]] — separate plugin for conversational vault Q&A (v4+)
 
 ## Related Skills
 
@@ -114,4 +127,5 @@ In the panel, use the filter icon to:
 ## Links
 
 - [GitHub](https://github.com/brianpetro/obsidian-smart-connections)
+- [Official Site](https://smartconnections.app/smart-connections/)
 - [Obsidian Plugin Page](https://obsidian.md/plugins?id=smart-connections)
